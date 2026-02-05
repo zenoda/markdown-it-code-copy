@@ -16,16 +16,22 @@ const defaultOptions = {
 	iconClass: 'mdi mdi-content-copy',
 	buttonStyle: 'position: absolute; top: 7.5px; right: 6px; cursor: pointer; outline: none;',
 	buttonClass: '',
-  element: ''
+	element: '',
+	removeEndNewline: false
 };
 
 function renderCode(origRule, options) {
 	options = merge(defaultOptions, options);
 	return (...args) => {
 		const [tokens, idx] = args;
-		const content = tokens[idx].content
+		let content = tokens[idx].content
 			.replaceAll('"', '&quot;')
 			.replaceAll("'", "&apos;");
+
+		if (options.removeEndNewline === true) {
+			content = content.replace(/(\r\n|\n|\r)+$/, '');
+		}
+
 		const origRendered = origRule(...args);
 
 		if (content.length === 0)

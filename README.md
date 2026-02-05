@@ -31,15 +31,16 @@ const md = require('markdown-it')()
 
 ### Options
 
-| Name        | Default                                                                       | Description                               |
-|-------------|-------------------------------------------------------------------------------|-------------------------------------------|
-| iconStyle   | 'font-size: 21px; opacity: 0.4;'                                              | The style of copy icon                    |
-| iconClass   | 'mdi mdi-content-copy'                                                        | The class of copy icon                    |
-| buttonStyle | 'position: absolute; top: 7.5px; right: 6px; cursor: pointer; outline: none;' | The style of the button wrapper           |
-| buttonClass | ''                                                                            | The class of the button wrapper           |
-| element     | ''                                                                            | Custom HTML element as button body        |
-| onSuccess   | undefined                                                                     | Function to call when copied successfully |
-| onError     | undefined                                                                     | Function to call when error occurred      |
+| Name             | Default                                                                       | Description                                |
+|------------------|-------------------------------------------------------------------------------|--------------------------------------------|
+| iconStyle        | 'font-size: 21px; opacity: 0.4;'                                              | The style of copy icon                     |
+| iconClass        | 'mdi mdi-content-copy'                                                        | The class of copy icon                     |
+| buttonStyle      | 'position: absolute; top: 7.5px; right: 6px; cursor: pointer; outline: none;' | The style of the button wrapper            |
+| buttonClass      | ''                                                                            | The class of the button wrapper            |
+| element          | ''                                                                            | Custom HTML element as button body         |
+| removeEndNewline | false                                                                         | Remove newline at the end of copied string |
+| onSuccess        | undefined                                                                     | Function to call when copied successfully  |
+| onError          | undefined                                                                     | Function to call when error occurred       |
 
 **Tips**:
 If you want to use a different icon font,
