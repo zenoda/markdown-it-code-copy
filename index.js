@@ -2,21 +2,27 @@ const merge = require('lodash.merge');
 const Clipboard = require("clipboard");
 const {v4: uuidv4} = require('uuid');
 const defaultOptions = {
-    iconStyle: 'font-size: 21px; opacity: 0.4;',
-    iconClass: 'mdi mdi-content-copy',
-    buttonStyle: 'position: absolute; top: 7.5px; right: 6px; cursor: pointer; outline: none;',
-    buttonClass: '',
-    element: ''
+	iconStyle: 'font-size: 21px; opacity: 0.4;',
+	iconClass: 'mdi mdi-content-copy',
+	buttonStyle: 'position: absolute; top: 7.5px; right: 6px; cursor: pointer; outline: none;',
+	buttonClass: '',
+	element: '',
+	removeEndNewline: false
 };
 
-function renderCode(origRule, options, id) {
-    options = merge(defaultOptions, options);
-    return (...args) => {
-        const [tokens, idx] = args;
-        const content = tokens[idx].content
-            .replaceAll('"', '&quot;')
-            .replaceAll("'", "&apos;");
-        const origRendered = origRule(...args);
+function renderCode(origRule, options) {
+	options = merge(defaultOptions, options);
+	return (...args) => {
+		const [tokens, idx] = args;
+		let content = tokens[idx].content
+			.replaceAll('"', '&quot;')
+			.replaceAll("'", "&apos;");
+
+		if (options.removeEndNewline === true) {
+			content = content.replace(/(\r\n|\n|\r)+$/, '');
+		}
+
+		const origRendered = origRule(...args);
 
         if (content.length === 0)
             return origRendered;
